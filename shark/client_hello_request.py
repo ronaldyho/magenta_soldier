@@ -49,6 +49,8 @@ def proc_ssl():
         for line in open( file_out , 'r'):
             if re.search( s_1 ,line ):
                 cnt_ignore = 1
+                #print("==========", end=" \n")
+                #sharkfile.write("========== \n")
 
 
             if cnt_ignore == 1:
@@ -63,6 +65,11 @@ def proc_ssl():
 
             if re.search( s_0 ,line ):
                 cnt_ignore = 0
+
+                if re.search( "Frame [0-9]{1,9}:",line ):
+                    print(">>> " + line, end=" \n")
+                    sharkfile.write("============ \n")
+                    sharkfile.write(">>> " + line)
 
         print("Done")
 
