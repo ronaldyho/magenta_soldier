@@ -6,7 +6,7 @@
 import re, sys
 import subprocess
 
-print("Version 20181011")
+print("Version 20181011-2")
 
 global file_out
 global file_out_proc
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     argz = sys.argv
 
     file_out = "zlast_tshark_out_" + str(argz[2]) + ".txt"
-    file_out_proc = "zlast_ssl_tshark__out.txt"
+    file_out_proc = "zlast_ssl_tshark__out_" + str(argz[2]) + ".txt"
 
 
     # 1 tshark to decode PCAP and pipe to text
