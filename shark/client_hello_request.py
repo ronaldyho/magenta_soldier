@@ -6,22 +6,20 @@
 import re, sys
 import subprocess
 
-print("Version 20180928-2")
+print("Version 20181011")
 
 global file_out
 global file_out_proc
-file_out = "zlast_tshark_out.txt"
-file_out_proc = "zlast_ssl_tshark__out.txt"
 
-def tshark_decode(argz):
+def tshark_decode( argz, file_out ):
 
     try:
         PCAP_FILE = str(argz[1])
-        PORT_FILTER = "tcp.port==" + str(argz[2]) + ",ssl"
+        PORT_FILTER = "tcp.port==" + str(argz[2])
 
-        ### WIN CMD :  tshark -r "Captured_9222.pcap" -Y "ssl.handshake" -d tcp.port==9222,ssl"
-        with open( 'zlast_tshark_out.txt', "w" ) as write_to_file:
-            subprocess.run(["tshark", "-r", PCAP_FILE, "-Y", "ssl.handshake", "-d", PORT_FILTER, "-V"], stdout=write_to_file)
+        ### WIN CMD :  tshark -r "Captured_9222.pcap" -Y "ssl.handshake && tcp.port==9222"
+        with open( file_out, "w" ) as write_to_file:
+            subprocess.run(["tshark", "-r", PCAP_FILE, "-Y", "ssl.handshake && " + PORT_FILTER, "-V"], stdout=write_to_file)
 
     except IndexError:
         print()
@@ -30,7 +28,7 @@ def tshark_decode(argz):
         print("  thisScript.py [PCAP file] [PORT]")
 
 
-def proc_ssl():
+def proc_ssl(file_out, file_out_proc):
 
     # I am assuming that the script only takes in ONE file name
 
@@ -40,7 +38,7 @@ def proc_ssl():
     # imptData array contains the values I should look for and print out
     s_0 = "Frame"
     s_1 = "Secure Sockets Layer"
-    imptData = ["Cipher Suite", "Handshake Protocol:", "Supported Group", "Signature Algorithm"]
+    imptData = ["Cipher Suite", "Handshake Protocol:", "Supported Group", "Signature Algorithm", "algorithmIdentifier"]
     sharkfile = open( file_out_proc, 'wt')
 
     cnt_ignore = 0
@@ -78,9 +76,15 @@ def proc_ssl():
 
 if __name__ == "__main__":
 
+    argz = sys.argv
+
+    file_out = "zlast_tshark_out_" + str(argz[2]) + ".txt"
+    file_out_proc = "zlast_ssl_tshark__out.txt"
+
+
     # 1 tshark to decode PCAP and pipe to text
-    tshark_decode( sys.argv )
+    tshark_decode( argz, file_out )
     
     # 2 Process text output and print to screen
-    proc_ssl()
+    proc_ssl( file_out, file_out_proc )
 
