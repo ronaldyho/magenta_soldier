@@ -6,7 +6,7 @@
 import re, sys
 import subprocess
 
-print("Version 20181011-2")
+print("Version 20181022-1")
 
 global file_out
 global file_out_proc
@@ -16,10 +16,11 @@ def tshark_decode( argz, file_out ):
     try:
         PCAP_FILE = str(argz[1])
         PORT_FILTER = "tcp.port==" + str(argz[2])
+        PORT_DECODE = "tcp.port==" + str(argz[2]) + ",ssl"
 
-        ### WIN CMD :  tshark -r "Captured_9222.pcap" -Y "ssl.handshake && tcp.port==9222"
+        ### WIN CMD :  tshark -r "Captured_9222.pcap" -Y "ssl.handshake && tcp.port==9222" -d "tcp.port==9222,ssl"
         with open( file_out, "w" ) as write_to_file:
-            subprocess.run(["tshark", "-r", PCAP_FILE, "-Y", "ssl.handshake && " + PORT_FILTER, "-V"], stdout=write_to_file)
+            subprocess.run(["tshark", "-r", PCAP_FILE, "-Y", "ssl.handshake && " + PORT_FILTER, "-d", PORT_DECODE, "-V"], stdout=write_to_file)
 
     except IndexError:
         print()
