@@ -20,7 +20,7 @@ $ tcpdump -n -s 0 -w - -U '( (port 443) or (port 8080) )' | tee port_cap.pcap | 
 Shows all the Handshake. The latter shows even the encrypted packets.
 ```bash
 tshark -r "sample.pcap" -Y "ssl.handshake"
-tshark -r "sample.pcap" -Y "ssl.handshake && tcp.port==443"
+tshark -r "sample.pcap" -Y "ssl.handshake && tcp.port==443" -d "tcp.port==443,ssl"
 tshark -r "sample.pcap" -2R "ssl"
 ```
 
