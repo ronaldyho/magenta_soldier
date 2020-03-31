@@ -66,3 +66,8 @@ g = open('C:/Logs/updateDetailResponse.csv','w')
 g.write("sep=|\n Name | ID | Operation | Version | Type | Size | Checksum ")
 g.write(str_pkg)
 ```
+
+# Printing text - using format 
+```
+print( "You have {} seen anything; this is {} of this world".format("NOT", "out") )
+```
