@@ -50,30 +50,30 @@ f.close()
 
 
 # SORT FILES
-```
+```python
 str_pkg_lines = str_pkg.split('\n')
 str_pkg_lines.sort()
 ```
 
 # JOIN list into string again
-```
+```python
 # str_pkg = "\n".join(str_pkg_lines)
 ```
 
 # CSV to be launch-able in Excel
-```
+```python
 g = open('C:/Logs/updateDetailResponse.csv','w')
 g.write("sep=|\n Name | ID | Operation | Version | Type | Size | Checksum ")
 g.write(str_pkg)
 ```
 
 # Printing text - using format 
-```
+```python
 print( "You have {} seen anything; this is {} of this world".format("NOT", "out") )
 ```
 
 # Printing time 
-```
+```python
 def getSTRtimeNow(format):
     # Returns STRING  
     # time.strftime('%Y-%m-%d %H:%M %Z', time.localtime(t))
