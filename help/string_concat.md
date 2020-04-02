@@ -71,3 +71,28 @@ g.write(str_pkg)
 ```
 print( "You have {} seen anything; this is {} of this world".format("NOT", "out") )
 ```
+
+# Printing time 
+```
+def getSTRtimeNow(format):
+    # Returns STRING  
+    # time.strftime('%Y-%m-%d %H:%M %Z', time.localtime(t))
+    #
+    # REF :- Stick to time to prevent DST ambiguity : https://is.gd/rZ7aL2
+
+    import time
+
+    t = time.time()
+    if format == 0 or format == "long":
+        # 2020-1-1|12:34:59
+        return time.strftime('%Y-%m-%d|%H-%M-%S', time.localtime(t))
+    elif format == 1 or format == "short":
+        # 094818am040220
+        return time.strftime('%I%M%S%P%d%m%y', time.localtime(t))
+    elif format == 2 or format == "epoch":
+        # 1580780901
+        return int( t )
+    else:
+        # 1580780901.5277028
+        return t
+```
