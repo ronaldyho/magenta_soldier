@@ -10,12 +10,13 @@ CURRENTLONGDATE=`date +"%Y %b %d %T"`
 SEC_SINCE_EPOCH=`date +%s`
 SEC_SINCE_EPOCH_FRM_DATE=`date -d "Oct 21 1973" +%s`
 
-echo SEC_SINCE_EPOCH
-```
-
-Calling BASH from PYTHON3
-```sh
+outputFile="./logging_out_"${SEC_SINCE_EPOCH}
 outputFile="./logging_out_"`date +%s`
 echo ${outputFile}
 #$ ./logging_out_1585810524
+```
+
+
+Calling BASH from PYTHON3
+```sh
 ```
