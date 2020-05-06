@@ -27,6 +27,10 @@ def main(argv):
          When executed without arguments ... 
         """)
 
+        
+def readFromFile(fileName):
+    # https://qiita.com/visualskyrim/items/1922429a07ca5f974467
+    lineList = [line.rstrip('\n') for line in open(fileName)]
 
 #######################################################
 
