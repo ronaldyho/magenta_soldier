@@ -8,6 +8,12 @@ Status code:400
 Response Body{"error":{"code":1,"reason":"Invalid username"}}    
 Request time: 0.127136    
 
+# Read from file (by line)
+```python
+lineList = [line.rstrip('\n') for line in open(fileName)]
+```
+https://qiita.com/visualskyrim/items/1922429a07ca5f974467
+
 
 # CSV to and fro excel
 ```python
