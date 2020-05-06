@@ -1,21 +1,39 @@
-# Write to file 
+# File 
+## Write to file 
 ```python
 thefile.write("Status code:" + str(req.status_code) + '\r\n'\
     "Response Body" + str(req.text) + '\r\n'\
     "Request time: " + str(req.elapsed.total_seconds()) + '\r\n')
-```
+
+############
 Status code:400    
 Response Body{"error":{"code":1,"reason":"Invalid username"}}    
 Request time: 0.127136    
+```
 
-# Read from file (by line)
+## Read from file (by line)
 ```python
 lineList = [line.rstrip('\n') for line in open(fileName)]
 ```
 https://qiita.com/visualskyrim/items/1922429a07ca5f974467
 
 
-# CSV to and fro excel
+## SORT FILES
+```python
+str_pkg_lines = str_pkg.split('\n')
+str_pkg_lines.sort()
+```
+
+# OS 
+## File in other folders
+```
+DIR_fromCurrent = os.path.join(".", "reports")
+FILE_InFolder = os.path.join(DIR_fromCurrent, "report.csv")
+```
+
+# CSV Manipulation
+
+## CSV to and fro excel
 ```python
 # [1/25] Added sep=| to the first row of the CSV so that you can read the file in excel as well
 import re
@@ -54,23 +72,18 @@ g.close()
 f.close()
 ```
 
-
-# SORT FILES
-```python
-str_pkg_lines = str_pkg.split('\n')
-str_pkg_lines.sort()
-```
-
-# JOIN list into string again
-```python
-# str_pkg = "\n".join(str_pkg_lines)
-```
-
-# CSV to be launch-able in Excel
+## CSV to be launch-able in Excel
 ```python
 g = open('C:/Logs/updateDetailResponse.csv','w')
 g.write("sep=|\n Name | ID | Operation | Version | Type | Size | Checksum ")
 g.write(str_pkg)
+```
+
+
+# String
+## JOIN list into string again
+```python
+# str_pkg = "\n".join(str_pkg_lines)
 ```
 
 # Printing text - using format 
