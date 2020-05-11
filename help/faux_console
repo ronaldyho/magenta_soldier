@@ -1,5 +1,5 @@
 from logging import *   ###<< Is in same directory
-import savepoint        ###<< Is in same directory
+import saveToPickle        ###<< Is in same directory
 import os, sys
 
 class qaronConsole(object): 
