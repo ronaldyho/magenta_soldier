@@ -1,25 +1,29 @@
 import logging
+import lib.qol as qol
 
 ############# ############# ############# ############# #############
 # REFERENCE:
 #   https://stackoverflow.com/questions/13479295/python-using-basicconfig-method-to-log-to-console-and-file
 ############# ############# ############# ############# #############
 
-loglevel = logging.DEBUG
+#loglevel = logging.DEBUG
+loglevel = logging.INFO
 
+# Sets up logging to File
 logging.basicConfig(
     filename='app.log', 
     filemode='w', 
     level=loglevel,
-    format='[%(levelname)s] %(message)s',
+    format='%(asctime)s [%(levelname)s] %(message)s',
     datefmt='%H:%M:%S'
 )
-# set up logging to console
+
+# Set up logging to Console
 console = logging.StreamHandler()
 console.setLevel( loglevel )
 
 # set a format which is simpler for console use
-formatter = logging.Formatter('%(levelname)-8s %(message)s')
+formatter = logging.Formatter( '%(asctime)s | %(message)s' )
 console.setFormatter(formatter)
 
 # add the handler to the root logger
@@ -39,3 +43,8 @@ logger = logging.getLogger(__name__)
 #
 # https://docs.python.org/3/library/logging.html#levels
 ###
+
+##########
+
+logging.info("Info logging")
+logging.debug("Info logging")
