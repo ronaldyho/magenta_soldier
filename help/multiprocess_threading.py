@@ -1,4 +1,5 @@
-import multiprocessing, timeit
+import multiprocessing, threading
+import timeit
 
 def testFunction( PS_arg1, PS_arg2, PS_arg3, PS_arg4):
     print( "This method prints {} and {} as well as {} also {}".format(PS_arg, PS_arg, PS_arg, PS_arg) )
