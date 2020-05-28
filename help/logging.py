@@ -1,5 +1,4 @@
 import logging
-import lib.qol as qol
 
 ############# ############# ############# ############# #############
 # REFERENCE:
