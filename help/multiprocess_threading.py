@@ -1,8 +1,8 @@
 import multiprocessing, threading
 import timeit
 
-def testFunction( PS_arg1, PS_arg2, PS_arg3, PS_arg4):
-    print( "This method prints {} and {} as well as {} also {}".format(PS_arg, PS_arg, PS_arg, PS_arg) )
+def testFunction( PS_arg1 ):
+    ...
   
 
 ########### MultiProcessing ##########
@@ -57,37 +57,67 @@ def multiProc_Thalia( numOftasks ):
     #pool.join()
 
 
-
 ########### THREADING ##########
 
-class myThread (threading.Thread):
-    def __init__(self, threadID, name, counter):
-        threading.Thread.__init__(self)
-        self.threadID = threadID
-        self.name = name
-        self.counter = counter
-
-    def run(self):
-        valStartRecordTime = timeit.default_timer()  #Alastor
-        logging.critical( "Multithreading Melpomene : {}".format(self.threadID) )
-        testFunction( self.counter )
-        logging.critical( "D O N E : {} | {}".format(self.threadID, timeit.default_timer() - valStartRecordTime) )    #Alastor
-
+# class myThread (threading.Thread):
+#     def __init__(self, threadID, name, counter):
+#         threading.Thread.__init__(self)
+#         self.threadID = threadID
+#         self.name = name
+#         self.counter = counter
+# 
+#     def run(self):
+#         valStartRecordTime = timeit.default_timer()  #Alastor
+#         logging.critical( "Multithreading Melpomene : {}".format(self.threadID) )
+#         logging.critical( "D O N E : {} | {}".format(self.threadID, timeit.default_timer() - valStartRecordTime) )    #Alastor
 
 
-def multiThreaded_Melpomene( rangedTasks ):
-### https://www.tutorialspoint.com/python3/python_multithreading.htm
+# def multiThreaded_Melpomene( rangedTasks ):
+#
+# Stopped using this because its hard to scale and use in my structure
+#   For one, it is hackish to use it for executing multiple tests 
+#
+# ### https://www.tutorialspoint.com/python3/python_multithreading.htm
+# ### Testing shows that THREADING is a better option over MultiProcess
+# ###   WHEN testing Concurrent API calls     
+# 
+#     global usr_init 
+#     global usr_target
+# 
+#     range_tasks = range( rangedTasks )
+# 
+#     for z in range_tasks:
+#         ( lambda t :  myThread(t, "thread{}".format(t), t).start() )(z)
+
+
+def multiThreaded_Mneme( rangedTasks ):
+### https://realpython.com/intro-to-python-threading/
+###
+###   This version of threading can scale better  
+###
 ### Testing shows that THREADING is a better option over MultiProcess
 ###   WHEN testing Concurrent API calls     
+
+    def thread_func( x ):
+        valStartRecordTime = timeit.default_timer()  #Alastor
+        logging.critical( "Multithreading Melpomene : {}".format(x) )
+        testFunction( x )
+        logging.critical( "D O N E : {} | {}".format(x, timeit.default_timer() - valStartRecordTime) )    #Alastor
+
 
     global usr_init 
     global usr_target
 
     range_tasks = range( rangedTasks )
     
+    threadList = list()
     for z in range_tasks:
-        ( lambda t :  myThread(t, "thread{}".format(t), t).start() )(z)
+        tt = threading.Thread( target=thread_func, args=(z,))
+        threadList.append(tt)
+        tt.start()
 
+    for index, thread in enumerate(threadList):
+        thread.join()
 
 
 
@@ -110,3 +140,6 @@ multiProc_Thalia( range_tasks )
 
 # Using Melpomene - To create concurrent API calls 
 multiThreaded_Melpomene( range_tasks )
+
+# Using Mneme - A more scalable threading technique 
+multiThreaded_Mneme( range_tasks )
