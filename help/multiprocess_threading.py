@@ -119,8 +119,29 @@ def multiThreaded_Mneme( rangedTasks ):
     for index, thread in enumerate(threadList):
         thread.join()
 
+def multiThreaded_Melete( rangedTasks ):
+### https://realpython.com/intro-to-python-threading/
+###
+###   This version of threading can scale better
+###   ThreadPoolExecutor is used, which is cleaner / easier
+###
+### Testing shows that THREADING is a better option over MultiProcess
+###   WHEN testing Concurrent API calls     
 
+    def threadFunc( x ):
+        valStartRecordTime = timeit.default_timer()  #Alastor
+        logging.critical( "Multithreading Melpomene : {}".format(x) )
+        #messaging_p11_send_message( x )
+        for m in range(3):
+            print( "{} Alastor is dealt {} damage".format(x, m) )
+        logging.critical( "D O N E : {} | {}".format(x, timeit.default_timer() - valStartRecordTime) )    #Alastor
 
+    import concurrent.futures
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+        executor.map( threadFunc, range(3) )
+
+        
 ########### MultiProcessing + Threading ##########
 # " No, I haven't make it work. I think I should 
 #   give up, before I give up my sanity "
@@ -143,3 +164,6 @@ multiThreaded_Melpomene( range_tasks )
 
 # Using Mneme - A more scalable threading technique 
 multiThreaded_Mneme( range_tasks )
+
+# Using Melete - Like Mneme, but with cleaner
+multiThreaded_Melete( range_tasks )
