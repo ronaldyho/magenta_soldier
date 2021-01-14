@@ -4,8 +4,10 @@
 
 
 # Convert PEM <-> P12 
-```
+```sh
+(Cert)
 openssl pkcs12 -clcerts -nokeys -in apns-cert.p12 -out apns-cert.pem
+(Key)
 openssl pkcs12 -nocerts -in apns-key.p12 -out apns-key.pem
 ```
 
