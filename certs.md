@@ -1,7 +1,13 @@
 
-# Listing a Keystore 
+# READ
+## Keystore 
 `keytool -list -keystore truststore.bks -storetype bks -storepass xxxxxxx`
 
+## PKCS12 
+`openssl pkcs12 -info -in keystore.p12`
+
+## x509 PEM
+`openssl x509 -in mycert.pem -text -noout`
 
 # Convert PEM <-> P12 
 ```sh
