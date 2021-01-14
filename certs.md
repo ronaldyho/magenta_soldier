@@ -12,9 +12,14 @@
 # Convert PEM <-> P12 
 ```sh
 (Cert)
-openssl pkcs12 -clcerts -nokeys -in apns-cert.p12 -out apns-cert.pem
+-clcerts      only output client certificates.
+-cacerts      only output CA certificates.
+
+$ openssl pkcs12 -clcerts -nokeys -in apns-cert.p12 -out apns-cert.pem
+$ openssl pkcs12 -cacerts -nokeys -in tenant1_web_80_9 -out tenant1_web_80_9.pem
+
 (Key)
-openssl pkcs12 -nocerts -in apns-key.p12 -out apns-key.pem
+$ openssl pkcs12 -nocerts -in apns-key.p12 -out apns-key.pem
 ```
 
 # Remove encryption from key .pem file 
