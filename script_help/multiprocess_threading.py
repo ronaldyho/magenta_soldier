@@ -4,6 +4,15 @@ import timeit
 def testFunction( PS_arg1 ):
     ...
   
+### The BETTER Python3.x way 
+# https://www.youtube.com/watch?v=0NNV8FDuck8
+
+with concurrent.futures.ThreadPoolExecutor() as executor:
+	result = executor.map(function, array)
+
+with concurrent.futures.ProcessPoolExecutor() as executor:
+	result = executor.map(function, array)
+
 
 ########### MultiProcessing ##########
 
