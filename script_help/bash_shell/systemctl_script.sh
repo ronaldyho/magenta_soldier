@@ -16,7 +16,7 @@ if [ $(varInputCMD) = '1' ]; then
 elif [ $(varInputCMD) = '2' ]; then
 
     ### String array 
-    declare -a list_services=("openfire" "groupie")
+    declare -a list_services=("logrotate" "csrss")
 
     for val in "${list_services[@]}";
     do
