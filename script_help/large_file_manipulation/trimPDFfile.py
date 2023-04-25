@@ -1,6 +1,6 @@
 import PyPDF2
 
-targetPDFfile = "stockPDF.pdf"
+targetPDFfile = "merged_PDF.pdf"
 
 # Open the PDF file in read-binary mode
 with open(targetPDFfile, "rb") as file:
@@ -13,7 +13,7 @@ with open(targetPDFfile, "rb") as file:
     # Loop through all pages in the PDF document
     for page_num in range(len(reader.pages)):
         # Skip the first page
-        if page_num in (0,1,2,3,4,5,6,7,8,9,10):
+        if page_num in (0,1,2,3):
             continue
 
         # Get the current page from the reader

@@ -2,6 +2,11 @@ from PIL import Image
 import random
 
 # Set the dimensions of the image
+mb130plustargetsize = 4555
+mb130targetsize = 4544
+mb129targetsize = 4480
+mb128targetsize = 4444
+mb120targetsize = 4200
 mb100targetsize = 3500
 mb99targetsize = 3333
 mb92targetsize = 3111
@@ -9,7 +14,7 @@ mb96targetsize = 3222
 mb97targetsize = 3250
 mb98targetsize = 3280
 
-width = mb100targetsize
+width = mb129targetsize
 height = 10000
 
 # Create a new image with the given dimensions and "RGB" color mode
@@ -21,7 +26,7 @@ for x in range(width):
         # Generate a random RGB value for this pixel
         r = random.randint(100, 255)
         g = random.randint(100, 255)
-        b = random.randint(100, 255)
+        b = random.randint(220, 255)
         # Set the pixel color
         img.putpixel((x, y), (r, g, b))
 
